@@ -285,7 +285,13 @@
     }
 
     this.json = function() {
-      return this.text().then(JSON.parse)
+      return this.text().then(function(text) {
+        if (!text || text === '') {
+          return {};
+        }
+
+        return JSON.parse(text);
+      })
     }
 
     return this
